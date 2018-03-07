@@ -40,7 +40,7 @@ public class MainActivity extends AppCompatActivity {
                 }catch (InterruptedException er){
                     er.printStackTrace();
                 }finally {
-                    Intent i = new Intent(getApplicationContext(), InicioActivity.class);
+                    Intent i = new Intent(getApplicationContext(), SlideActivity.class);
                     startActivity(i);
                     finish();
                 }

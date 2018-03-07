@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ImageView
+        android:id="@+id/slide_imagen"
+        android:layout_width="200dp"
+        android:layout_height="200dp"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="57dp"
+        app:srcCompat="@drawable/slideuno" />
+
+    <TextView
+        android:id="@+id/slide_titulo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/slide_imagen"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="18dp"
+        android:lineSpacingExtra="18sp"
+        android:text="Consulta de Kardex"
+        android:textColor="@color/colorWhite"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        android:typeface="normal" />
+
+    <TextView
+        android:id="@+id/slide_texto"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignEnd="@+id/slide_titulo"
+        android:layout_alignLeft="@+id/slide_titulo"
+        android:layout_alignRight="@+id/slide_titulo"
+        android:layout_alignStart="@+id/slide_titulo"
+        android:layout_below="@+id/slide_titulo"
+        android:layout_marginTop="25dp"
+        android:padding="10dp"
+        android:text="El Profesor como el padre de familia podra consultar sobre el desempeño de su hijo en el colegio"
+        android:textAlignment="center"
+        android:textColor="@color/colorWhite" />
+</RelativeLayout>
