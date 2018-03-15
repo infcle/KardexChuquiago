@@ -17,7 +17,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         setContentView(R.layout.activity_login);
         _etUsuario     = findViewById(R.id.et_user);
         _etContrasenia = findViewById(R.id.et_password);
-        _btnIngresar   = findViewById(R.id.btnIngresar);
+        _btnIngresar   = findViewById(R.id.btn_Ingresar);
         _btnIngresar.setOnClickListener(this);
 
     }
