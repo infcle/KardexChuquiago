@@ -79,8 +79,8 @@ public class SlideActivity extends AppCompatActivity implements View.OnClickList
 
     @Override
     public void onClick(View view) {
-        Intent i = new Intent(this,InicioActivity.class);
-        startActivity(i);
+        Intent l = new Intent(this,LoginActivity.class);
+        startActivity(l);
         finish();
     }
 }
