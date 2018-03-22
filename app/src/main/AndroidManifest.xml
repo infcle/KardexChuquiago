@@ -22,7 +22,8 @@
             android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".SlideActivity" />
         <activity android:name=".LoginActivity" />
-        <activity android:name=".MenuActivity"></activity>
+        <activity android:name=".MenuActivity" />
+        <activity android:name=".ListaKardexCursoActivity" />
     </application>
 
 </manifest>

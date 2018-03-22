@@ -1,5 +1,6 @@
 package com.chuquiagomarca.kardexchuquiago;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -22,7 +23,8 @@ public class MenuActivity extends AppCompatActivity implements View.OnClickListe
     @Override
     public void onClick(View view) {
         if(view.getId() == R.id.btn_KardexCursos){
-
+            Intent kc = new Intent(this, ListaKardexCursoActivity.class);
+            startActivity(kc);
         }
 
         if(view.getId() == R.id.btn_Configuraciones){
