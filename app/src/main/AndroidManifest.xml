@@ -21,7 +21,8 @@
             android:label="@string/title_activity_inicio"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".SlideActivity" />
-        <activity android:name=".LoginActivity"></activity>
+        <activity android:name=".LoginActivity" />
+        <activity android:name=".MenuActivity"></activity>
     </application>
 
 </manifest>
