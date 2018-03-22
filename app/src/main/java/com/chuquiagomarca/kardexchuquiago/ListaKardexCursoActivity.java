@@ -28,8 +28,8 @@ public class ListaKardexCursoActivity extends AppCompatActivity {
         ArrayList<Estudiantes> listEstudiante = new ArrayList<>();
         listEstudiante.add(new Estudiantes(6846341,"Luis Miguel","Mendoza","Ticona","varon","05/10/87","Z.Villa Victoria Calle Manuripi",1,0));
         listEstudiante.add(new Estudiantes(7894634,"Demi","Lovato","","mujer","05/10/87","Los Angeles",2,2));
-        listEstudiante.add(new Estudiantes(3591678,"Carin","ola","","varon","05/10/87","Villa Adela",1,0));
-        listEstudiante.add(new Estudiantes(7896431,"Janneth","Apaza","","mujer","05/10/87","Z. Calle Manuripi",6,0));
+        listEstudiante.add(new Estudiantes(3591678,"Luz Aimar","Ticona","Huanca","mujer","24/12/07","Villa Victoria",1,0));
+        listEstudiante.add(new Estudiantes(7896431,"Carlos Daniel","Ticona","Huanca","varon","13/04/03","Z. Calle Manuripi",6,0));
         listEstudiante.add(new Estudiantes(1205486,"Milena","Quiñones","Vallejo","mujer","05/10/87","Irpavi",4,0));
         return  listEstudiante;
     }
