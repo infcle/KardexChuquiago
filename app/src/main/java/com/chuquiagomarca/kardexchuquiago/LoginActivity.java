@@ -65,7 +65,6 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         Contrasenia =  _etContrasenia.getText().toString();
         if(maya.accesoInternet() == 1){
             consultarWebServiceLogin(_etUsuario.getText().toString(), _etContrasenia.getText().toString());
-
         }else{
             maya.Toast("Debe estar conectado a una Red 4G o WiFi para poder continuar");
         }
@@ -75,7 +74,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     private void consultarWebServiceLogin(String login, String contrasenia) {
 
         String URL ;
-        URL = "http://localhost:80/ChuquiagoApp/app/models/login/ws_login.php?user="+login+"&password="+contrasenia;
+        URL = "http://10.127.127.1/ChuquiagoApp/app/models/login/ws_login.php?user="+login+"&password="+contrasenia;
         Log.d("URL LOGIN", URL);
         jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, URL, null, this, this);
         request.add(jsonObjectRequest);
@@ -83,7 +82,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
     @Override
     public void onErrorResponse(VolleyError error) {
-        Log.d("URI LOGIN ", error+"");
+        Log.d("URI LOGIN ERROR", error+"");
     }
 
     @Override
@@ -98,7 +97,9 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
             }else{
                 if(!jsonObject.optString("id").isEmpty()){
                     maya.Toast("Bienvenido : "+jsonObject.optString("nombres"));
-                    Intent m = new Intent(this,MenuActivity.class);
+                    Intent m = new Intent(
+
+                            this,MenuActivity.class);
                     startActivity(m);
                     finish();
                 }else{
