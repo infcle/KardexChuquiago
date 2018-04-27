@@ -10,9 +10,12 @@ import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
 
+import com.chuquiagomarca.kardexchuquiago.Maya.Maya;
+
 public class MainActivity extends AppCompatActivity {
 
     private ImageView _ivLogo, _ivBolivia;
+    private Maya maya;
     Animation fromLogo, fromBolivia;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,6 +34,7 @@ public class MainActivity extends AppCompatActivity {
         fromBolivia = AnimationUtils.loadAnimation(this, R.anim.frombolivia);
         _ivLogo.setAnimation(fromLogo);
         _ivBolivia.setAnimation(fromBolivia);
+        maya = new Maya(this);
 
         //iniciamos el tiempo que le daremos a la animacion
         Thread timer = new Thread(){
@@ -40,8 +44,14 @@ public class MainActivity extends AppCompatActivity {
                 }catch (InterruptedException er){
                     er.printStackTrace();
                 }finally {
-                    Intent i = new Intent(getApplicationContext(), SlideActivity.class);
-                    startActivity(i);
+                    if (maya.usuarioLogeado()){
+                        Intent i = new Intent(getApplicationContext(), MenuDocenteActivity.class);
+                        startActivity(i);
+                    }else{
+                        Intent i = new Intent(getApplicationContext(), SlideActivity.class);
+                        startActivity(i);
+                    }
+
                     finish();
                 }
             }

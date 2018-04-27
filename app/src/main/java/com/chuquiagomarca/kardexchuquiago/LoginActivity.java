@@ -74,7 +74,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     private void consultarWebServiceLogin(String login, String contrasenia) {
 
         String URL ;
-        URL = "http://10.127.127.1/ChuquiagoApp/app/models/login/ws_login.php?user="+login+"&password="+contrasenia;
+        URL = "http://192.168.1.4/ChuquiagoApp/app/models/login/ws_login.php?user="+login+"&password="+contrasenia;
         Log.d("URL LOGIN", URL);
         jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, URL, null, this, this);
         request.add(jsonObjectRequest);
@@ -92,15 +92,31 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         JSONObject jsonObject= null;
         try {
             jsonObject = json.getJSONObject(0);
-            if(jsonObject.optString("id").isEmpty() && jsonObject != null){
+            if(jsonObject.optString("id_user").isEmpty() && jsonObject != null){
                 maya.Toast("Revise el Login y Contraseña");
             }else{
-                if(!jsonObject.optString("id").isEmpty()){
-                    maya.Toast("Bienvenido : "+jsonObject.optString("nombres"));
-                    Intent m = new Intent(
-
-                            this,MenuActivity.class);
-                    startActivity(m);
+                if(!jsonObject.optString("id_user").isEmpty()){
+                    Intent m;
+                    switch (Integer.parseInt(jsonObject.optString("id_rol"))){
+                        case 2:
+                           // maya.Toast("Bienvenido Docente: "+jsonObject.optString("nombre"));
+                            guardarUsuario(Integer.parseInt(jsonObject.optString("id_user")),Integer.parseInt(jsonObject.optString("id_rol")),jsonObject.optString("rol"),jsonObject.optString("nombre")+" "+jsonObject.optString("ap_paterno")+" "+jsonObject.optString("ap_materno"),Integer.parseInt(jsonObject.optString("id_docente")));
+                            m = new Intent(this,MenuDocenteActivity.class);
+                            startActivity(m);
+                            break;
+                        case 3:
+                            maya.Toast("Bienvenido : "+jsonObject.optString("nombre")+" Modulo Responsable no Implementado");
+                            m = new Intent(this,MenuActivity.class);
+                            startActivity(m);
+                            break;
+                        case 4:
+                            maya.Toast("Bienvenido : "+jsonObject.optString("nombre")+" Modulo Estudiante no Implementado");
+                            m = new Intent(this,MenuActivity.class);
+                            startActivity(m);
+                            break;
+                        default:
+                            break;
+                    }
                     finish();
                 }else{
                     maya.Toast("Contactese con el Administrador su Usuario tiene problemas de estado");
@@ -109,7 +125,20 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
             }
         } catch (JSONException e) {
             e.printStackTrace();
-            maya.Toast("Revise el Login y Contraseña");
+            maya.Toast("Revise el WS");
+        }
+    }
+
+    private void guardarUsuario(int _id_usuario, int id_rol, String rol_nombre, String nombre_completo, int id_docente) {
+        manejaBD =  new HandlerBasedeDatos(this);
+        try{
+            manejaBD.addUsuario(_id_usuario, id_rol, rol_nombre, nombre_completo, id_docente);
+        }catch (Exception e){
+
+            Log.d("CREATE","Error");
+            e.printStackTrace();
+        }finally {
+            maya.Toast("Bienvenido...");
         }
     }
 }

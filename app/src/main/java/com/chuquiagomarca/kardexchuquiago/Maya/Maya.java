@@ -5,6 +5,7 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
+import android.util.Log;
 import android.widget.Toast;
 
 import com.chuquiagomarca.kardexchuquiago.Modelo.HandlerBasedeDatos;
@@ -26,32 +27,59 @@ public class Maya {
             Toast.makeText(context,msm,Toast.LENGTH_SHORT).show();
         }
 
-        public int obtenerSesionID() {
+    public String buscarNombreUsuario(){
+        String[] columnasu = { "nombre_completo" };
+        manejaBD = new HandlerBasedeDatos(context);
+        nuestraBD = manejaBD.getWritableDatabase();
+        Cursor cu = nuestraBD.query("usuario",columnasu,"1 = 1",null,null,null,null);
+        //Log.d("sql",cu.getCount()+"");
+        if(cu.getCount() == 1){
 
-            String[] columnas = { "_id","fk_user","estado" };
-            manejaBD = new HandlerBasedeDatos(context);
-            nuestraBD = manejaBD.getWritableDatabase();
-            Cursor c = nuestraBD.query("adherents",columnas,"estado = 1",null,null,null,null);
-            //Toast.makeText(context," Count de la Consulta "+ c.getCount() ,Toast.LENGTH_SHORT).show();
-            if(c.getCount() == 1){
-                int i_id     = c.getColumnIndex("_id");
-                int i_estado = c.getColumnIndex("estado");
+            int i_nombre  = cu.getColumnIndex("nombre_completo");
+            cu.moveToFirst();
+            Log.d("IdAcceso : ", cu.getString(i_nombre)+"" );
 
-                int valor_id = -1;
-                for (c.moveToFirst();!c.isAfterLast();c.moveToNext()){
-                    valor_id = c.getInt(i_id);
-                    //valor_id = c.getInt(i_estado);
-                }
-                manejaBD.close();
-                return valor_id;
-            }else{
-                manejaBD.close();
-                return -1;
-            }
+            return  cu.getString(i_nombre);
 
+        }else{
+            return  "";
         }
+    }
 
-        public int accesoInternet(){
+    public String buscarId_User(){
+        String[] columnasu = { "_id_usuario" };
+        manejaBD = new HandlerBasedeDatos(context);
+        nuestraBD = manejaBD.getWritableDatabase();
+        Cursor cu = nuestraBD.query("usuario",columnasu,"1 = 1",null,null,null,null);
+        //Log.d("sql",cu.getCount()+"");
+        if(cu.getCount() == 1){
+
+            int i_id_usuario  = cu.getColumnIndex("_id_usuario");
+            cu.moveToFirst();
+            Log.d("Id_Usuario : ", cu.getString(i_id_usuario)+"" );
+
+            return  cu.getString(i_id_usuario);
+
+        }else{
+            return  "-1";
+        }
+    }
+
+    public boolean usuarioLogeado(){
+        String[] columnasu = { "nombre_completo" };
+        manejaBD = new HandlerBasedeDatos(context);
+        nuestraBD = manejaBD.getWritableDatabase();
+        Cursor cu = nuestraBD.query("usuario",columnasu,"1 = 1",null,null,null,null);
+        //Log.d("sql",cu.getCount()+"");
+        if(cu.getCount() == 1){
+            return  true;
+        }else{
+            return false;
+        }
+    }
+
+
+    public int accesoInternet(){
             ConnectivityManager cm;
             NetworkInfo ni;
             cm = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
