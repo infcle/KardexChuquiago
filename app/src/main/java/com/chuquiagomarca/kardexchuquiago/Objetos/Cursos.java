@@ -1,10 +1,12 @@
 package com.chuquiagomarca.kardexchuquiago.Objetos;
 
+import java.io.Serializable;
+
 /**
  * Created by Lyanna on 27/04/2018.
  */
 
-public class Cursos {
+public class Cursos implements Serializable {
     private int id_curso;
     private String curso, materia, grado;
 

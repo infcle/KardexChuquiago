@@ -29,7 +29,8 @@
         <activity android:name=".MenuActivity" />
         <activity android:name=".ListaKardexCursoActivity" />
         <activity android:name=".MenuDocenteActivity" />
-        <activity android:name=".ListaCursosDocenteActivity"></activity>
+        <activity android:name=".ListaCursosDocenteActivity" />
+        <activity android:name=".EstudiantesCursoActivity"></activity>
     </application>
 
 </manifest>

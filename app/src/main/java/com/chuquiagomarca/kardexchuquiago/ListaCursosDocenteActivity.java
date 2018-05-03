@@ -1,9 +1,12 @@
 package com.chuquiagomarca.kardexchuquiago;
 
 import android.app.ProgressDialog;
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ListView;
 
 import com.android.volley.Request;
@@ -25,7 +28,7 @@ import java.util.ArrayList;
 public class ListaCursosDocenteActivity extends AppCompatActivity implements Response.Listener<JSONObject>, Response.ErrorListener {
 
     private ListView _listCursos;
-    public ArrayList<Cursos> listCurso;// = new ArrayList<>();
+    public  ArrayList<Cursos> listCurso;// = new ArrayList<>();
     private CursosDocenteAdatador adapter;
     private RequestQueue request;
     private JsonObjectRequest jsonObjectRequest;
@@ -38,7 +41,6 @@ public class ListaCursosDocenteActivity extends AppCompatActivity implements Res
         setContentView(R.layout.activity_lista_cursos_docente);
         request = Volley.newRequestQueue(this);
         maya = new Maya(this);
-
         _listCursos = findViewById(R.id.listCursosDocente);
         obtenerCursos();
 
@@ -82,6 +84,14 @@ public class ListaCursosDocenteActivity extends AppCompatActivity implements Res
             progress.hide();
             adapter = new CursosDocenteAdatador(this,listCurso);
             _listCursos.setAdapter(adapter);
+            _listCursos.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                @Override
+                public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                    Intent ec = new Intent(ListaCursosDocenteActivity.this, EstudiantesCursoActivity.class);
+                    ec.putExtra("objectCurso",listCurso.get(i));
+                    startActivity(ec);
+                }
+            });
         }
     }
 }
