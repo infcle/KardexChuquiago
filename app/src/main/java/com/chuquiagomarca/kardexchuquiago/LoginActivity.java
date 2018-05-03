@@ -74,7 +74,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     private void consultarWebServiceLogin(String login, String contrasenia) {
 
         String URL ;
-        URL = "http://192.168.1.4/ChuquiagoApp/app/models/login/ws_login.php?user="+login+"&password="+contrasenia;
+        URL = "http://192.168.1.10/ChuquiagoApp/app/models/login/ws_login.php?user="+login+"&password="+contrasenia;
         Log.d("URL LOGIN", URL);
         jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, URL, null, this, this);
         request.add(jsonObjectRequest);
@@ -88,7 +88,6 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     @Override
     public void onResponse(JSONObject response) {
         JSONArray json = response.optJSONArray("usuario");
-
         JSONObject jsonObject= null;
         try {
             jsonObject = json.getJSONObject(0);
