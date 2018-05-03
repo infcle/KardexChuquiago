@@ -51,7 +51,7 @@ public class ListaCursosDocenteActivity extends AppCompatActivity implements Res
         progress.setCancelable(false);
 
         String URL ;
-        URL = "http://192.168.1.4/ChuquiagoApp/app/models/login/ws_cursos_asignados.php?id_user="+maya.buscarId_User();
+        URL = "http://192.168.1.10/ChuquiagoApp/app/models/login/ws_cursos_asignados.php?id_user="+maya.buscarId_User();
         Log.d("URL Cursos", URL);
         jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, URL, null, this, this);
         request.add(jsonObjectRequest);
